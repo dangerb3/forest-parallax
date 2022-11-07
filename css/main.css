@@ -5,22 +5,25 @@
 }
 
 :root {
-       
+      --index: calc(1vw+1vh);
+      /* Для расчета размера относительно размеров экрана */
 }
 
 @font-face {
-      font-family: raleway_f; /* суффикс f для того, чтобы загружались именно шрифты из fonts папки */
-      src: url(../fonts/raleway-regular.woff2);
+      font-family: raleway_f;
+      /* суффикс f для того, чтобы загружались именно шрифты из fonts папки */
+      src: url("../fonts/raleway-regular.woff2");
 }
+
 @font-face {
-      font-family: raleway_f; /* суффикс f для того, чтобы загружались именно шрифты из fonts папки */
-      src: url(../fonts/raleway-black.woff2);
+      font-family: raleway_f;
+      /* суффикс f для того, чтобы загружались именно шрифты из fonts папки */
+      src: url("../fonts/raleway-black.woff2");
       font-weight: 900;
 }
 
 body {
       background-color: #010101;
-      color: #fff; 
       font-family: raleway_f, sans-serif;
       line-height: 1.55;
 }
@@ -29,24 +32,74 @@ body {
       position: relative;
 }
 
+.main-header::after {
+      content: '';
+      position: absolute;
+      z-index: 100;
+      width: 100%;
+      height: calc(var(--index)*10);
+      background-image: url('../img/ground.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      bottom: calc(var(--index)*-4.5);
+}
+
 .layers {
-      height: 100vh;  
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+      overflow: hidden;
+      position: relative;
 }
 
 .layer {
       height: 100%;
       width: 100%;
-      position: absolute; 
+      position: absolute;
       background-size: cover;
       background-position: center;
+      will-change: transform;
+      /* чтобы не было фризов. Аппаратное ускорение) */
+      z-index: 2;
 }
 
-/* .main-ar */
+.layers__base {
+      transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
+      z-index: 0;
+}
 
-.test {
-      
+.layers__middle {
+      transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+}
+
+.layers__front {
+      transform: translate3d(0, calc(var(--scrollTop) / 5.7), 0);
+}
+
+.layers__header {
+      z-index: 1;
+      transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
+      will-change: transform;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #e7e7e0;
+      text-shadow: 0 0 15px #9d822b;
+}
+
+.layers__title {
+      font-size: calc(var(--index)*5);
+      letter-spacing: calc(var(--index)*1.1);
+}
+
+.layers__caption {
+      font-size: calc(var(--index)*2);
+      letter-spacing: calc(var(--index)/1.2);
+      margin-top: calc(var(--index)*-4.75);
+}
+
+.main-article {
+      min-height: 100vh;
 }
