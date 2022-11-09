@@ -7,6 +7,7 @@
 :root {
       --index: calc(1vw+1vh);
       /* Для расчета размера относительно размеров экрана */
+      --text: #e7e7e0
 }
 
 @font-face {
@@ -85,7 +86,7 @@ body {
       will-change: transform;
       text-transform: uppercase;
       font-weight: 900;
-      color: #e7e7e0;
+      color: var(--text);
       text-shadow: 0 0 15px #9d822b;
 }
 
@@ -101,5 +102,38 @@ body {
 }
 
 .main-article {
+      --main-article-transform: translate3d(0, calc(var(--scrollTop)/-20), 0);
       min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+}
+
+.main-article__header {
+      text-transform: uppercase;
+      font-size: calc(var(--index)*3.5);
+      letter-spacing: calc(var(--index)/7.5);
+      transform: var(--main-article-transform);
+      will-change: transform;
+}
+
+.main-article__paragraph {
+      max-width: calc(var(--index) * 80);
+      font-size: calc(var(--index) * 2);
+      margin-top: calc(var(--index) / 1.1);
+      transform: var(--main-article-transform);
+      will-change: transform;
+}
+
+.copy {
+      position: absolute;
+      bottom: calc(var(--index)*2.5);
+      opacity: 0.45;
+      font-size: calc(var(--index) * 1.5);
+      letter-spacing: calc(var(--index) / 12);
 }
